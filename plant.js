@@ -50,29 +50,29 @@ function renderPlants(plants) {
     col.className = "col";
 
     col.innerHTML += `
-        <img
-          class="w-100 img-fluid"
-          src="${plant.image}"
-          alt="${plant.name}"
-          style="margin-top: 20%"
-        />
-        <div class="row">
-          <div class="col h5">${plant.category}</div>
-        </div>
-        <div class="row">
-          <div class="col h5">
-            ${plant.name}<br />Plant
+          <img
+            class="w-100 img-fluid"
+            src="${plant.image}"
+            alt="${plant.name}"
+            style="margin-top: 20%"
+          />
+          <div class="row">
+            <div class="col h5">${plant.category}</div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            ${createStarRating(plant.rating)}
+          <div class="row">
+            <div class="col h5">
+              ${plant.name}<br />Plant
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">${plant.price}</div>
-        </div>
-      `;
+          <div class="row">
+            <div class="col">
+              ${createStarRating(plant.rating)}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">${plant.price}</div>
+          </div>
+        `;
 
     container.appendChild(col);
   });
@@ -227,3 +227,151 @@ document.addEventListener("DOMContentLoaded", () => {
   // Append container to body or another element
   document.getElementById("products").appendChild(container);
 });
+
+// ---------json-code-------
+function header() {
+  let div = document.createElement("div");
+  div.classList = "ro";
+}
+
+// ------------------json-code----------------
+
+const jsondata = {
+  logo: "./plantimage/asset 9.png",
+  menuItems: [
+    {
+      label: "Shop All",
+      action: "/shop",
+      position: "left",
+      type: "text",
+    },
+    {
+      label: "Plants",
+      action: "/product-category/plants",
+      position: "left",
+      type: "text",
+    },
+    {
+      label: "Cacti",
+      action: "/product-category/cacti",
+      position: "left",
+      type: "text",
+    },
+    {
+      label: "Our Story",
+      action: "/home",
+      position: "right",
+      type: "text",
+    },
+    {
+      label: "QUESTIONS?",
+      action: "/contact",
+      position: "right",
+      type: "text",
+    },
+    {
+      label: "Shopping Cart",
+      action: "/shopping-cart",
+      position: "right",
+      type: "icon",
+      iconURL: "fa-solid fa-truck-fast text-dark",
+    },
+    {
+      label: "Account",
+      action: "/my-account",
+      position: "right",
+      type: "icon",
+      iconURL: "fa-solid fa-circle-user fs-3 text-black",
+    },
+  ],
+  mainSection: {
+    title: "Bird of Paradise Plant",
+    subtitle: "Plants",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mattis nulla in mauris efficitur elementum.",
+    price: "$65.00",
+    discountedPrice: "$50.00",
+    actionButton: "Add to cart",
+    heroImage: "./plantimage/asset 1.png",
+  },
+};
+
+// create the header
+function Header(config) {
+  const header = document.createElement("header");
+  header.className = "shadow-sm";
+
+  const container = document.createElement("div");
+  container.className = "container";
+
+  const row = document.createElement("div");
+  row.className = "row align-items-center";
+
+  // Left column logo and menu items
+  const leftCol = document.createElement("div");
+  leftCol.className = "col d-flex align-items-center gap-3";
+
+  // Right column menu items
+  const rightCol = document.createElement("div");
+  rightCol.className =
+    "col d-flex justify-content-end align-items-center gap-3";
+
+  // logo
+  const logoLink = document.createElement("a");
+  logoLink.href = "#";
+  const logoImg = document.createElement("img");
+  logoImg.src = config.logo;
+  logoImg.alt = "logo";
+  logoImg.className = "navbar-brand";
+  logoLink.appendChild(logoImg);
+  leftCol.appendChild(logoLink);
+
+  // Add menu items
+  config.menuItems.forEach((item) => {
+    const link = document.createElement("a");
+    link.href = item.action;
+    link.className = "nav-link";
+
+    if (item.type === "text") {
+      link.textContent = item.label;
+      item.position === "left"
+        ? leftCol.appendChild(link)
+        : rightCol.appendChild(link);
+    } else if (item.type === "icon") {
+      const icon = document.createElement("i");
+      item.iconURL.split(" ").forEach((cls) => icon.classList.add(cls));
+      link.appendChild(icon);
+      rightCol.appendChild(link);
+    }
+  });
+
+  // Append columns to the row
+  row.appendChild(leftCol);
+  row.appendChild(rightCol);
+
+  // Append row to the container
+  container.appendChild(row);
+
+  // Append container to the header
+  header.appendChild(container);
+
+  // Prepend the header to the body
+  document.body.prepend(header);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  Header(jsondata);
+});
+
+// ----------------------------------------------------
+function heroSection(mainSectionData) {
+  let data = Object.entries(mainSectionData);
+  data.pop();
+  for (const [key, value] of data) {
+    document.getElementById(key).textContent = value;
+  }
+
+  document.getElementById("heroImage").src = mainSectionData.heroImage;
+}
+
+heroSection(jsondata.mainSection);

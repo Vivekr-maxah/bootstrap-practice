@@ -14,7 +14,7 @@
   </head>
   <body>
     <div class="container-fluid">
-      <div class="row shadow-sm">
+      <!-- <div class="row shadow-sm">
         <div class="col">
           <div class="container">
             <div class="row">
@@ -43,36 +43,37 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="row" style="background-color: #f1f5f4">
         <div class="col align-content-center" style="margin-left: 10%">
           <div class="row">
-            <div class="col text-secondary fs-6 fw-medium mb-4">Plants</div>
+            <div class="col text-secondary fs-6 fw-medium mb-4">
+              <span id="subtitle"></span>
+            </div>
           </div>
           <div class="row">
             <div class="col">
-              <h1>Bird of Paradise <br />Plant</h1>
+              <h1 id="title"><br /></h1>
             </div>
           </div>
           <div class="row">
-            <div class="col text-secondary fw-medium mt-3">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-              mattis nulla in mauris efficitur elementum.
-            </div>
+            <div
+              class="col text-secondary fw-medium mt-3"
+              id="description"
+            ></div>
           </div>
           <div class="row">
             <div class="col">
               <div class="container-fluid">
                 <div class="row">
                   <div class="col text-secondary fw-medium mt-3">
-                    <del>$65.00</del>
-                    <span>$50.00</span>
+                    <del id="price"></del>
+                    <span id="discountedPrice"></span>
                     <button
                       class="btn rounded-0 text-light"
                       style="background-color: #586f69"
-                    >
-                      ADD TO CART
-                    </button>
+                      id="actionButton"
+                    ></button>
                   </div>
                 </div>
               </div>
@@ -80,11 +81,7 @@
           </div>
         </div>
         <div class="col">
-          <img
-            src="./plantimage/asset 1.png"
-            alt="plant image"
-            class="img-fluid"
-          />
+          <img alt="plant image" class="img-fluid" id="heroImage" />
         </div>
       </div>
 
